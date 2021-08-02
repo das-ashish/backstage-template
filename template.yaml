@@ -1,36 +1,28 @@
 apiVersion: backstage.io/v1beta2
 kind: Template
+# some metadata about the template itself
 metadata:
-  name: redocly-template
-  title: Starter For Redocly
-  description: Starter For Redocly
+  name: v1beta2-demo
+  title: Test Action template
+  description: scaffolder v1beta2 template demo
 spec:
-  owner: zemoso/ashish-das
+  owner: backstage/techdocs-core
   type: service
+
+  # these are the steps which are rendered in the frontend with the form input
   parameters:
-    - title: Please fill the below
+    - title: Fill in some steps
       required:
         - name
-        - owner
       properties:
         name:
           title: Name
           type: string
           description: Unique name of the component
           ui:autofocus: true
-        description:
-          title: Description
-          type: string
-          description: Help others understand what this app does.
-        owner:
-          title: Owner
-          type: string
-          description: Owner of the component
-          ui:field: OwnerPicker
           ui:options:
-          allowedKinds:
-            - Group
-    - title: Choose Location
+            rows: 5
+    - title: Choose a location
       required:
         - repoUrl
       properties:
@@ -39,23 +31,19 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
-          allowedHosts:
-            - github.com
+            allowedHosts:
+              - github.com
+
+  # here's the steps that are executed in series in the scaffolder backend
   steps:
-    - id: fetch
-      name: Fetching Code
-      actions: fetch:template
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
       input:
         url: https://github.com/das-ashish/redocly-template
         values:
-        name: "{{ parameters.name }}"
-        owner: "{{parameters.owner}}"
-        copyWithoutRender:
-          - "*.html"
-          - "*.js"
-          - "*.tsx"
-          - "*.ts"
-          - "*.github"
+          name: "{{ parameters.name }}"
+
     - id: publish
       name: Publish
       action: publish:github
@@ -63,9 +51,10 @@ spec:
         allowedHosts: ["github.com"]
         description: "This is {{ parameters.name }}"
         repoUrl: "{{ parameters.repoUrl }}"
+
     - id: register
-        name: Register
-        action: catalog:register
-        input:
-          repoContentsUrl: "{{ steps.publish.output.repoContentsUrl }}"
-          catalogInfoPath: "/catalog-info.yaml"
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: "{{ steps.publish.output.repoContentsUrl }}"
+        catalogInfoPath: "/catalog-info.yaml"
