@@ -14,33 +14,33 @@ spec:
         - owner
       properties:
         name:
-        title: Name
-        type: string
-        description: Unique name of the component
-        ui:autofocus: true
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
         description:
-        title: Description
-        type: string
-        description: Help others understand what this app does.
+          title: Description
+          type: string
+          description: Help others understand what this app does.
         owner:
-        title: Owner
-        type: string
-        description: Owner of the component
-        ui:field: OwnerPicker
-        ui:options:
-        allowedKinds:
-        - Group
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+          allowedKinds:
+            - Group
     - title: Choose Location
       required:
         - repoUrl
       properties:
         repoUrl:
-        title: Repository Location
-        type: string
-        ui:field: RepoUrlPicker
-        ui:options:
-        allowedHosts:
-        - github.com
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+          allowedHosts:
+            - github.com
 steps:
   - id: fetch
     name: Fetching Code
@@ -56,13 +56,13 @@ steps:
       - "*.tsx"
       - "*.ts"
       - "*.github"
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        description: "This is {{ parameters.name }}"
-        repoUrl: "{{ parameters.repoUrl }}"
+  - id: publish
+    name: Publish
+    action: publish:github
+    input:
+      allowedHosts: ["github.com"]
+      description: "This is {{ parameters.name }}"
+      repoUrl: "{{ parameters.repoUrl }}"
   - id: register
     name: Register
     action: catalog:register
