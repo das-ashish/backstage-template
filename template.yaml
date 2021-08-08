@@ -1,10 +1,11 @@
 apiVersion: backstage.io/v1beta2
 kind: Template
-# some metadata about the template itself
 metadata:
   name: v1beta2-demo
   title: Test Action template
   description: scaffolder v1beta2 template demo
+  annotations:
+    lighthouse.com/website-url: http://localhost:3000
 spec:
   owner: backstage/techdocs-core
   type: service
