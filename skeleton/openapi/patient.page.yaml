@@ -1,0 +1,11 @@
+type: reference-docs
+definitionId: patient
+showInfo: false
+expand: false
+settings:
+  hideDownloadButton: true
+  generateCodeSamples:
+    languages:
+      - lang: curl
+      - lang: JavaScript
+      - lang: Node.js

@@ -1,0 +1,47 @@
+---
+title:   Documentation
+nextToButton: false
+---
+
+import { LandingLayout } from '@redocly/ui';
+
+import {
+  Button,
+  Box,
+  FlexSection,
+  Flex,
+  Jumbotron,
+  ThinTile,
+  WideTile,
+  Emphasis,
+  H1,
+  H2,
+  SectionHeader,
+} from '@redocly/ui';
+
+import { NavBar } from '@redocly/ui';
+
+
+export default LandingLayout;
+
+<div style={{margin: "50px"}}>
+  <H1>Introduction</H1>
+  <p>
+    At  , we aim to bring forth a better health reality by empowering an inspired new wave of healthcare builders to create digital technologies and services that are cheaper, easier to customize, and far more intimate. Every American has a right to their own health information home. And now that the pieces are in place, it’s time to start building.
+  </p>
+  <H1>Documentation</H1>
+  <p>
+    This page provides some guidance to help get new implementers started on their path to successful implementation.
+    <ul>
+      <li>How the information is being exchanged</li>
+      <li>What are terminologies being used</li>
+      <li>When is information exchanged</li>
+      <li>What information is going to be exchanged</li>
+    </ul>
+  </p>
+  <Flex p={20} justifyContent="center">
+    <Button inversed transparent large to="docs/index.md">
+      Get started
+    </Button>
+  </Flex>
+</div>

@@ -1,0 +1,192 @@
+openapi: 3.0.3
+servers:
+  - url: '//localhost:3005'
+info:
+  title: Patient REST API Reference
+  description: This category of APIs include details for methods that are applicable at a patient level such as patient lookup, updating patient details.
+  termsOfService: 'http:// health.com/terms/'
+  contact:
+    email:  apiteam@ .com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Patient
+    description: Everything about your Patients
+    externalDocs:
+      description: Find out more
+      url: 'http:// health.com'
+paths:
+  /patients:
+    post:
+      tags:
+        - Patient
+      summary: Add a new patient
+      description: ''
+      operationId: addPatient
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+      requestBody:
+        $ref: '#/components/requestBodies/Patient'
+  '/patients/{id}':
+    get:
+      tags:
+        - Patient
+      summary: Get patient details
+      description: ''
+      operationId: getPatient
+      parameters:
+        - name: id
+          in: path
+          description: The id that needs to be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - Patient
+      summary: Update patient details
+      description: ''
+      operationId: updatePatient
+      parameters:
+        - name: id
+          in: path
+          description: The id that needs to be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      requestBody:
+        $ref: '#/components/requestBodies/Patient'
+    delete:
+      tags:
+        - Patient
+      summary: Delete patient details
+      description: ''
+      operationId: deletePatient
+      parameters:
+        - name: id
+          in: path
+          description: The id that needs to be fetched.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+components:
+  responses:
+    PetResponse:
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Patient'
+  requestBodies:
+    Patient:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Patient'
+      description: Patient object that needs to be added to the DB
+      required: true
+  schemas:
+    Patient:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - birthDate
+        - gender
+        - phone
+      properties:
+        firstName:
+          description: Patient first name
+          type: string
+          minLength: 1
+          example: John
+        lastName:
+          description: Patient last name
+          type: string
+          minLength: 1
+          example: Smith
+        birthDate:
+          type: string
+          description: Patient DOB
+          example: 1991-02-10
+        gender:
+          type: string
+          description: Patient Gender
+          example: male
+        maritalStatus:
+          type: string
+          description: Patient Marital Status
+          example: M
+        phone:
+          type: string
+          description: Patient Phone Number
+          example: 555-282-3544
+        address:
+          description: Patient Address
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      properties:
+        line:
+         type: string
+         description: line
+         example: 1087 Halvorson Light
+        city:
+          type: string
+          description: city
+          example: Carver
+        state:
+          type: string
+          description: state
+          example: Massachusetts
+        postalCode:
+         type: string
+         description: postal code
+         example: 02330
+        country:
+          type: string
+          description: country
+          example: US
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string

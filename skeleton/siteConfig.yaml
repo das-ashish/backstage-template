@@ -1,0 +1,33 @@
+meta:
+  title:   Health API
+  description: The API documentation .
+  siteUrl: https://portal-demo.redoc.ly
+  keywords: api reference docs
+logo: ./images/logo.png
+enableToc: true
+disableLastModified: true
+oasDefinitions:
+  patient: ./openapi/patient.yaml
+stylesheets:
+  - ./static/css/index.css
+  - https://fonts.googleapis.com/css?family=Roboto:300,400,600,700
+  - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
+nav:
+  - search: true
+footer:
+  copyrightText: Copyright ©  Health 2021. All right reserved.
+  columns:
+    - group: Legal
+      items:
+        - label: Terms of Use
+          href: 'https://redoc.ly/subscription-agreement/'
+        - label: Privacy Notice
+          href: 'https://redoc.ly/privacy-policy/'
+        - label: Cookie Notice
+          href: 'https://redoc.ly/privacy-policy/'
+    - group: Support
+      items:
+        - label: FAQ
+          page: faq.md
+        - label: Contact us
+          page: contact.mdx

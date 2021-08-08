@@ -1,0 +1,16 @@
+{
+  "name": " api-documentation",
+  "private": true,
+  "version": "0.0.1",
+  "description": "  API Documentation Portal",
+  "license": "MIT",
+  "scripts": {
+    "start": "redocly-portal develop -p 3000",
+    "build": "redocly-portal build",
+    "clean": "redocly-portal clean"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@redocly/developer-portal": "1.0.0-beta.142"
+  }
+}

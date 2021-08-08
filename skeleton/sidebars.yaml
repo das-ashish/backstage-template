@@ -1,0 +1,9 @@
+ health:
+  - page: index.mdx
+    label: Home
+  - group: API Reference
+    expanded: false
+    pages:
+      - page: docs/index.md
+        label: Getting Started
+      - page: openapi/patient.page.yaml
