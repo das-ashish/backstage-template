@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
     backstage.io/techdocs-ref: dir:.
-    lighthouse.com/website-url: https://paytm.com/
+    lighthouse.com/website-url: https://backstage.io/
 spec:
   type: service
   lifecycle: experimental
